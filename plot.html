@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <script src="https://cdn.plot.ly/plotly-2.30.0.min.js"></script>
+  </head>
+  <body>
+    <div id="myGraph" style="width:600px;height:400px;"></div>
+
+    Simple graph
+    <script>
+      const dotList = []
+      function addDot(xPoint=1, yPoint=1, colour="black", name="1,1", mode='markers'){
+        console.log("Adding dot")
+        const newPoint = {
+          x: [xPoint],
+          y: [yPoint],
+          mode: mode,
+          type: 'scatter',
+          name: name,
+          marker: { size: 10, color: colour }
+        };
+        dotList.push(newPoint)
+      }
+
+      // Line graph data (y = x^2)
+      const line = {
+        x: [-5, -4, -3, -2, -1, 0, 1, 2, 3, 4, 5],
+        y: [-5, -4, -3, -2, -1, 0, 1, 2, 3, 4, 5].map(x => x * x),
+        mode: 'lines',
+        type: 'scatter',
+        name: 'y = x²',
+        line: { color: 'blue' }
+      };
+
+      // Line graph data (y = x^2)
+      const line2 = {
+        x: [-5, -4, -3, -2, -1, 0, 1, 2, 3, 4, 5],
+        y: [-5, -4, -3, -2, -1, 0, 1, 2, 3, 4, 5],
+        mode: 'lines',
+        type: 'scatter',
+        name: 'y = x',
+        line: { color: 'yellow' }
+      };
+
+      const shape = {
+        x: [-5, -4,-1, 0, 1, 4, -5],
+        y: [5, -4,-1, 0, 1, 4, 5],
+        mode: 'lines',
+        type: 'scatter',
+        name: 'random shape',
+        line: { color: 'blue' }
+      }
+
+      // A single point to highlight
+      const point = {
+        x: [2],
+        y: [4],
+        mode: 'markers',
+        type: 'scatter',
+        name: 'Point (2, 4)',
+        marker: { size: 10, color: 'red' }
+      };
+
+      const point2 = {
+        x: [-3],
+        y: [-4],
+        mode: 'markers',
+        type: 'scatter',
+        name: 'Point2 (-3, -4)',
+        marker: { size: 10, color: 'red' }
+      };
+
+      // Combine and plot
+      const layout = {
+        title: 'Simple Plot with a Point',
+        xaxis: { title: 'x' },
+        yaxis: { title: 'y' }
+      };
+
+      Plotly.newPlot('myGraph', [line, point, point2, shape, line2, ...dotList], layout);
+    </script>
+    <button onclick="addDot()">Press me</button>
+  </body>
+</html>

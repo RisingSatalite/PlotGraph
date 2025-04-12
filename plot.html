@@ -20,6 +20,8 @@
           marker: { size: 10, color: colour }
         };
         dotList.push(newPoint)
+
+        Plotly.react('myGraph', [line, point, point2, shape, line2, ...dotList], layout);
       }
 
       // Line graph data (y = x^2)
@@ -80,5 +82,7 @@
       Plotly.newPlot('myGraph', [line, point, point2, shape, line2, ...dotList], layout);
     </script>
     <button onclick="addDot()">Press me</button>
+    <input type="number"/>
+    <input type="number"/>
   </body>
 </html>

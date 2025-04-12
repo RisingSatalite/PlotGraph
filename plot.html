@@ -10,13 +10,15 @@
     <script>
       const dotList = []
       function addDot(xPoint=1, yPoint=1, colour="black", name="1,1", mode='markers'){
+        const x = parseFloat(document.getElementById("xValue").value);
+        const y = parseFloat(document.getElementById("yValue").value);
         console.log("Adding dot")
         const newPoint = {
-          x: [xPoint],
-          y: [yPoint],
+          x: [x],
+          y: [y],
           mode: mode,
           type: 'scatter',
-          name: name,
+          name: `(${x},${y})`,
           marker: { size: 10, color: colour }
         };
         dotList.push(newPoint)
@@ -82,7 +84,7 @@
       Plotly.newPlot('myGraph', [line, point, point2, shape, line2, ...dotList], layout);
     </script>
     <button onclick="addDot()">Press me</button>
-    <input type="number"/>
-    <input type="number"/>
+    <input id="xValue" type="number" placeholder="X value"/>
+    <input id="yValue" type="number" placeholder="Y value"/>
   </body>
 </html>

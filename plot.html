@@ -12,6 +12,8 @@
       function addDot(xPoint=1, yPoint=1, colour="black", name="1,1", mode='markers'){
         const x = parseFloat(document.getElementById("xValue").value);
         const y = parseFloat(document.getElementById("yValue").value);
+        const newColour = document.getElementById("newColour").value;
+
         console.log("Adding dot")
         const newPoint = {
           x: [x],
@@ -19,7 +21,7 @@
           mode: mode,
           type: 'scatter',
           name: `(${x},${y})`,
-          marker: { size: 10, color: colour }
+          marker: { size: 10, color: newColour }
         };
         dotList.push(newPoint)
 
@@ -86,5 +88,11 @@
     <button onclick="addDot()">Press me</button>
     <input id="xValue" type="number" placeholder="X value"/>
     <input id="yValue" type="number" placeholder="Y value"/>
+    <select id="newColour">
+      <option value="red">Red</option>
+      <option value="blue">Blue</option>
+      <option value="green">Green</option>
+      <option value="black">Black</option>
+    </select>
   </body>
 </html>

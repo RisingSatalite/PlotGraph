@@ -84,7 +84,18 @@
       };
 
       Plotly.newPlot('myGraph', [line, point, point2, shape, line2, ...dotList], layout);
+
+
+      //List displayer
+      const ul = document.getElementById('dotListDisplay');
+      ul.innerHTML = ''; // clear the list
+      dotList.forEach(item => {
+        const li = document.createElement('li');
+        li.textContent = item;
+        ul.appendChild(li);
+      });
     </script>
+
     <button onclick="addDot()">Press me</button>
     <input id="xValue" type="number" placeholder="X value"/>
     <input id="yValue" type="number" placeholder="Y value"/>
@@ -94,5 +105,6 @@
       <option value="green">Green</option>
       <option value="black">Black</option>
     </select>
+    <ul id="dotListDisplay"></ul>
   </body>
 </html>

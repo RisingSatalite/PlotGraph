@@ -26,6 +26,7 @@
         dotList.push(newPoint)
 
         Plotly.react('myGraph', [line, point, point2, shape, line2, ...dotList], layout);
+        updateDotList()
       }
 
       // Line graph data (y = x^2)
@@ -87,13 +88,15 @@
 
 
       //List displayer
-      const ul = document.getElementById('dotListDisplay');
-      ul.innerHTML = ''; // clear the list
-      dotList.forEach(item => {
-        const li = document.createElement('li');
-        li.textContent = item;
-        ul.appendChild(li);
-      });
+      function updateDotList(){
+        const div = document.getElementById('dotListDisplay');
+        div.innerHTML = ''; // clear the list
+        dotList.forEach(item => {
+          const li = document.createElement('li');
+          li.textContent = item.name;
+          div.appendChild(li);
+        });
+      }
     </script>
 
     <button onclick="addDot()">Press me</button>
@@ -105,6 +108,6 @@
       <option value="green">Green</option>
       <option value="black">Black</option>
     </select>
-    <ul id="dotListDisplay"></ul>
+    <div id="dotListDisplay"></div>
   </body>
 </html>

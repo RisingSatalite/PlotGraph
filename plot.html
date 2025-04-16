@@ -27,7 +27,7 @@
         };
         dotList.push(newPoint)
 
-        Plotly.react('myGraph', [line, point, point2, shape, line2, ...dotList], layout);
+        Plotly.react('myGraph', [...dotList], layout);
         updateDotList()
       }
 
@@ -96,7 +96,7 @@
 
         dotList.forEach((item, index) => {
           const div = document.createElement('div');
-          div.textContent = item.name;
+          div.textContent = " ";
           displayList.appendChild(div);
 
           const name = document.createElement('span');

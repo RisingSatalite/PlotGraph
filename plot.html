@@ -11,6 +11,7 @@
 
     <script>
       const dotList = []
+
       function addDot(xPoint=1, yPoint=1, colour="black", name="1,1", mode='markers'){
         const x = parseFloat(document.getElementById("xValue").value);
         const y = parseFloat(document.getElementById("yValue").value);
@@ -126,9 +127,59 @@
           });
         });
       }
+      
+      function downloadFile(filename, content) {
+        const element = document.createElement('a');
+        const file = new Blob([content], { type: 'text/plain' });
+        element.href = URL.createObjectURL(file);
+        element.download = filename;
+        document.body.appendChild(element);
+        element.click();
+        document.body.removeChild(element); // Optional: clean up
+      }
+
+      function downloadData() {
+        const dotInformation = {dots: dotList};
+        const jsonObj = JSON.stringify(dotInformation, null, 2); // pretty print optional
+        downloadFile("diagramdata.sdd", jsonObj);
+      }
+
+      function uploadData(event){
+        const file = event.target.files[0];
+        const reader = new FileReader();
+      
+        reader.onload = (e) => {
+          const content = e.target.result;
+          try{
+            const data = JSON.parse(content)
+            console.log(data)
+            console.log(data.dots)
+            dotList = data.dots
+          } catch (error) {
+            console.error('Error parsing imported data:', error);
+            alert('An error occurred while reading the data: ' + error);
+          }
+        };
+
+        reader.readAsText(file);
+
+        updateDotList()
+      }
+
     </script>
 
-    <button onclick="addDot()">Add point</button>
+    <div>
+      <button onclick=downloadData()>Download</button>
+      <input
+        type="file"
+        accept=".sdd"
+        onChange={uploadData}
+        id="fileInput"
+        style="display: none;"
+      />
+      <button onClick="document.getElementById('fileInput').click()">Upload</button>
+    </div>
+    <button onclick=addDot()>Add point</button>
     <input id="xValue" type="number" placeholder="X value"/>
     <input id="yValue" type="number" placeholder="Y value"/>
     <select id="newColour">

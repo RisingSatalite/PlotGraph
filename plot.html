@@ -10,7 +10,7 @@
     <div id="myGraph" style="width:600px;height:400px;"></div>
 
     <script>
-      const dotList = []
+      var dotList = []
 
       function addDot(xPoint=1, yPoint=1, colour="black", name="1,1", mode='markers'){
         const x = parseFloat(document.getElementById("xValue").value);
@@ -126,6 +126,9 @@
             updateDotList()// re-render the list
           });
         });
+
+        //Update graphical display
+        Plotly.react('myGraph', [...dotList], layout);
       }
       
       function downloadFile(filename, content) {
@@ -155,6 +158,7 @@
             console.log(data)
             console.log(data.dots)
             dotList = data.dots
+            updateDotList()
           } catch (error) {
             console.error('Error parsing imported data:', error);
             alert('An error occurred while reading the data: ' + error);
@@ -173,7 +177,7 @@
       <input
         type="file"
         accept=".sdd"
-        onChange={uploadData}
+        onchange="uploadData(event)"
         id="fileInput"
         style="display: none;"
       />

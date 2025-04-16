@@ -91,10 +91,21 @@
       function updateDotList(){
         const div = document.getElementById('dotListDisplay');
         div.innerHTML = ''; // clear the list
-        dotList.forEach(item => {
-          const li = document.createElement('li');
-          li.textContent = item.name;
-          div.appendChild(li);
+
+        dotList.forEach((item, index) => {
+          const span = document.createElement('li');
+          span.textContent = item.name;
+          div.appendChild(span);
+
+          const button = document.createElement('button');
+          button.textContent = "delete";
+          div.appendChild(button);
+
+          // Add delete functionality
+          button.addEventListener('click', () => {
+            dotList.splice(index, 1); // remove from array
+            updateDotList()// re-render the list
+          });
         });
       }
     </script>

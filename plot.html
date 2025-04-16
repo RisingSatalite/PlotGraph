@@ -4,9 +4,11 @@
     <script src="https://cdn.plot.ly/plotly-2.30.0.min.js"></script>
   </head>
   <body>
-    <div id="myGraph" style="width:600px;height:400px;"></div>
 
     Simple graph
+
+    <div id="myGraph" style="width:600px;height:400px;"></div>
+
     <script>
       const dotList = []
       function addDot(xPoint=1, yPoint=1, colour="black", name="1,1", mode='markers'){
@@ -79,9 +81,9 @@
 
       // Combine and plot
       const layout = {
-        title: 'Simple Plot with a Point',
-        xaxis: { title: 'x' },
-        yaxis: { title: 'y' }
+        title: 'Simple Plot Graph with Points',
+        xaxis: { title: 'X' },
+        yaxis: { title: 'Y' }
       };
 
       Plotly.newPlot('myGraph', [...dotList], layout);
@@ -126,7 +128,7 @@
       }
     </script>
 
-    <button onclick="addDot()">Press me</button>
+    <button onclick="addDot()">Add point</button>
     <input id="xValue" type="number" placeholder="X value"/>
     <input id="yValue" type="number" placeholder="Y value"/>
     <select id="newColour">
